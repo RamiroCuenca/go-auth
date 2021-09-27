@@ -19,7 +19,17 @@ func TestPassword(t *testing.T) {
 	err = PasswordCheck(p, hashedPassword)
 	if err != nil {
 		t.Errorf("The password check failed: %v", err)
+	} else {
+		t.Log("Password checked succesfully! :)")
 	}
-	t.Log("Password checked succesfully! :)")
+
+	// Check with an incorrect password
+	incorrectPass := "incorrect123"
+	err = PasswordCheck(incorrectPass, hashedPassword)
+	if err == nil {
+		t.Error("The password check pass but with an incorrect password")
+	} else {
+		t.Log("The verifier work properly :)")
+	}
 
 }
